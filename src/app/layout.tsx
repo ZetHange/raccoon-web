@@ -24,8 +24,8 @@ export default async function RootLayout({
           </Link>
         </div>
         <nav className="container mx-auto h-[100px] flex items-center max-md:px-2">
-          <div className="flex items-center">
-            <Image src="" alt="logo" />
+          <div className="flex items-center gap-1">
+            <Image src="/raccoon-logo.png" width={32} height={32} alt="logo" />
             <p className="font-bold text-2xl">{data.title_navbar}</p>
             <small className="text-xs pt-3">{data.version_navbar}</small>
           </div>

@@ -1,7 +1,6 @@
 import Raccoon3d from "@/components/Raccoon3d";
 import Button from "@/components/UI/Button";
 import Feature from "@/components/UI/Feature";
-import Hero from "@/components/UI/Hero";
 import Involve from "@/components/UI/Involve";
 import Link from "next/link";
 
