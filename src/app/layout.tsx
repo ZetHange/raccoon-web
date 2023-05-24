@@ -23,7 +23,7 @@ export default async function RootLayout({
             {data.content}
           </Link>
         </div>
-        <nav className="container mx-auto h-[100px] flex items-center max-md:px-2">
+        <nav className="container mx-auto h-[100px] flex items-center max-md:px-4 max-md:text-center">
           <div className="flex items-center gap-1">
             <Image src="/raccoon-logo.png" width={32} height={32} alt="logo" />
             <p className="font-bold text-2xl">{data.title_navbar}</p>

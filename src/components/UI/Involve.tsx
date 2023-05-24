@@ -13,7 +13,7 @@ const Involve: React.FC<Props> = ({ title, imageLink, link, className }) => {
   return (
     <Link href={link}>
       <div className="grid text-center items-center justify-center">
-        <Image width={128} height={128} src={imageLink} alt={title} />
+        <Image width={100} height={100} src={imageLink} alt={title} />
         <p className={`text-lg text-center ${className}`}>{title}</p>
       </div>
     </Link>

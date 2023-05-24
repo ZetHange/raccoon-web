@@ -16,7 +16,7 @@ export default async function Home() {
             </p>
             <div className="md:w-96 mx-auto">
               <p>{data["description-main-section"]}</p>
-              <Link className="mx-auto" href={data["link-download"]}>
+              <Link className="mx-auto pt-2" href={data["link-download"]}>
                 <Button>Скачать</Button>
               </Link>
             </div>
@@ -39,7 +39,7 @@ export default async function Home() {
       </section>
       <section className="mt-10 mx-auto">
         <h1 className="text-2xl text-center">Присоединяйтесь к созданию</h1>
-        <div className="grid md:grid-cols-3 max-md:gap-2 mt-2">
+        <div className="grid grid-cols-3 max-md:gap-2 mt-2">
           <Involve
             title="GitHub"
             imageLink="/github-logo.png"
