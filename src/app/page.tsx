@@ -1,95 +1,74 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Raccoon3d from "@/components/Raccoon3d";
+import Button from "@/components/UI/Button";
+import Feature from "@/components/UI/Feature";
+import Hero from "@/components/UI/Hero";
+import Involve from "@/components/UI/Involve";
+import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const data: any = await getData();
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <section className="container">
+        <div className="grid md:grid-cols-2 md:mx-auto md:items-center">
+          <div className="max-md:pt-5">
+            <p className="text-3xl md:w-96 mx-auto font-semibold">
+              {data["title-main-section"]}
+            </p>
+            <div className="md:w-96 mx-auto">
+              <p>{data["description-main-section"]}</p>
+              <Link className="mx-auto" href={data["link-download"]}>
+                <Button>Скачать</Button>
+              </Link>
+            </div>
+          </div>
+          <div className="md:w-96 md:h-96 max-md:w-64 max-md:h-64 max-md:mx-auto">
+            <Raccoon3d />
+          </div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </section>
+      <section className="grid md:grid-cols-3 max-md:gap-5 md:mx-auto mt-2">
+        <Feature emoji="🙃" about="Простой">
+          Код Raccoon настолько простой и длинный, что капец
+        </Feature>
+        <Feature emoji="🤤" about="Быстрый">
+          Скорость как у Ruby
+        </Feature>
+        <Feature emoji="😦" about="Мощный">
+          На Raccoon можно решать любые задачи
+        </Feature>
+      </section>
+      <section className="mt-10 mx-auto">
+        <h1 className="text-2xl text-center">Присоединяйтесь к созданию</h1>
+        <div className="grid md:grid-cols-3 max-md:gap-2 mt-2">
+          <Involve
+            title="GitHub"
+            imageLink="/github-logo.png"
+            link="https://github.com/RCSource/raccoon"
+          />
+          <Involve
+            title="Telegram"
+            imageLink="/telegram-logo.png"
+            link="https://t.me/rubycoding"
+          />
+          <Involve
+            title="Discord"
+            imageLink="/discord-logo.png"
+            link="https://discord.gg/HD8t3t88yd"
+            className="mt-6"
+          />
+        </div>
+      </section>
     </main>
-  )
+  );
 }
+
+const getData = async () => {
+  const res = await fetch(
+    "https://api.cosmicjs.com/v3/buckets/raccoon-production/objects/646dc322d97da800083d4143?read_key=vRqh2Se9jx6n0jQq5xOV9d6httEfgUntNOCia9jXL0oaPzwKuE&depth=1&props=metadata"
+  );
+
+  const data = await res.json();
+  const { metadata } = data.object;
+  return metadata;
+};
