@@ -2,7 +2,6 @@ import Button from "@/components/UI/Button";
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
-import { NextPageContext } from "next";
 
 export const metadata = {
   title: "Raccoon",
@@ -34,7 +33,7 @@ export default async function RootLayout({
             <Button>Документация</Button>
           </Link>
         </nav>
-        <div className="container mx-auto">{children}</div>
+        <div className="md:container mx-auto">{children}</div>
         {/* <footer className="text-center">
           Raccoon - язык программирования | {new Date().getFullYear() + 1}
         </footer> */}

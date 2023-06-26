@@ -1,3 +1,4 @@
+import CodeMirrorRaccoon from "@/components/CodeMirrorRaccoon";
 import Raccoon3d from "@/components/Raccoon3d";
 import Button from "@/components/UI/Button";
 import Feature from "@/components/UI/Feature";
@@ -8,8 +9,8 @@ export default async function Home() {
   const data: any = await getData();
   return (
     <main>
-      <section className="container">
-        <div className="grid md:grid-cols-2 md:mx-auto md:items-center">
+      <section className="container bg-slate-100 rounded-t-2xl">
+        <div className="grid md:grid-cols-2 md:mx-auto md:items-center max-md:text-center">
           <div className="max-md:pt-5">
             <p className="text-3xl md:w-96 mx-auto font-semibold">
               {data["title-main-section"]}
@@ -26,7 +27,43 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="grid md:grid-cols-3 max-md:gap-5 md:mx-auto mt-2">
+      <section className="container p-10 text-center bg-slate-50 font-robotoMono">
+        Последний релиз:{" "}
+        <a href={data["link-last-release"]} className="text-blue-300">
+          {data["last-release"]}
+        </a>
+      </section>
+      <section className="container p-10 bg-slate-200 rounded-b-2xl font-robotoMono">
+        Синтаксис:{" "}
+        <section className="grid md:grid-cols-3 max-md:gap-2 md:mx-auto mt-4">
+          <CodeMirrorRaccoon
+            code={`# Русская рулетка в Raccoon
+yet(true) {
+  let x = input('');
+  let arr = ['lose', 'lose', 'win'];
+  println(randarr(arr));
+}`}
+          />
+          <CodeMirrorRaccoon
+            code={`# Функции в Raccoon
+def func
+  std.bring ("hello!")
+end
+        
+func`}
+          />
+          <CodeMirrorRaccoon
+            code={`# Циклы в Raccoon
+let testvar = 1
+
+while testvar != 11
+  std.bring (testvar)
+  testvar =+ 11
+end`}
+          />
+        </section>
+      </section>
+      <section className="grid md:grid-cols-3 max-md:gap-5 md:mx-auto mt-4">
         <Feature emoji="🙃" about="Простой">
           Код Raccoon настолько простой и длинный, что капец
         </Feature>
@@ -64,7 +101,12 @@ export default async function Home() {
 
 const getData = async () => {
   const res = await fetch(
-    "https://api.cosmicjs.com/v3/buckets/raccoon-production/objects/646dc322d97da800083d4143?read_key=vRqh2Se9jx6n0jQq5xOV9d6httEfgUntNOCia9jXL0oaPzwKuE&depth=1&props=metadata"
+    "https://api.cosmicjs.com/v3/buckets/raccoon-production/objects/646dc322d97da800083d4143?read_key=vRqh2Se9jx6n0jQq5xOV9d6httEfgUntNOCia9jXL0oaPzwKuE&depth=1&props=metadata",
+    {
+      headers: {
+        "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59",
+      },
+    }
   );
 
   const data = await res.json();

@@ -12,7 +12,7 @@ function FatRaccoon(props: any) {
 
   const result = useLoader(GLTFLoader, "/models/scene.gltf");
 
-  return <primitive ref={ref} scale={0.04} object={result.scene} {...props} />;
+  return <primitive ref={ref} scale={0.045} object={result.scene} {...props} />;
 }
 
 const Raccoon3d = () => {

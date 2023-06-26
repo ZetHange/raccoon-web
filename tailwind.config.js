@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         rubik: ['"Rubik"'],
+        robotoMono: ['"Roboto Mono"']
       },
     },
     container: {
