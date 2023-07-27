@@ -64,7 +64,7 @@ export default async function Home() {
           <Involve
             title="Telegram"
             imageLink="/telegram-logo.png"
-            link="https://t.me/rubycoding"
+            link="https://t.me/flashwarest"
           />
           <Involve
             title="Discord"
