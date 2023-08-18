@@ -81,11 +81,7 @@ export default async function Home() {
 const getData = async () => {
   const res = await fetch(
     "https://api.cosmicjs.com/v3/buckets/raccoon-production/objects/646dc322d97da800083d4143?read_key=vRqh2Se9jx6n0jQq5xOV9d6httEfgUntNOCia9jXL0oaPzwKuE&depth=1&props=metadata",
-    {
-      headers: {
-        "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59",
-      },
-    }
+    { cache: 'no-store' },
   );
 
   const data = await res.json();
@@ -96,11 +92,7 @@ const getData = async () => {
 const getExamples = async () => {
   const res = await fetch(
     "https://api.cosmicjs.com/v3/buckets/raccoon-production/objects?pretty=true&query=%7B%22type%22:%22primery-koda%22%7D&limit=10&read_key=vRqh2Se9jx6n0jQq5xOV9d6httEfgUntNOCia9jXL0oaPzwKuE&depth=1&props=metadata",
-    {
-      headers: {
-        "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59",
-      },
-    }
+    { cache: 'no-store' },
   );
   const data = await res.json();
   const { objects } = data;
